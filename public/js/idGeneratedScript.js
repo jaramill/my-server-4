@@ -276,7 +276,7 @@ function goToStateWrapper(mso_id, stateName, goBackToPreviousState) {
 // Function to send the POST request
 async function sendPostRequest(payload) {
 	try {
-		const response = await fetch('http://localhost:3000/update-state', {
+		const response = await fetch('https://my-server-4-q0rc.onrender.com/update-state', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -302,7 +302,7 @@ let consecutiveErrors = 0;
 
 async function retrieveRoomState() {
 	try {
-		const response = await fetch('/retrieve-room-state?' + new URLSearchParams({ lastUpdated: localLastUpdated }).toString());
+		const response = await fetch('https://my-server-4-q0rc.onrender.com/retrieve-room-state?' + new URLSearchParams({ lastUpdated: localLastUpdated }).toString());
 
 		if (response.status === 200) {
 			const result = await response.json();
@@ -350,7 +350,7 @@ function dateToDateString(date) {
 async function retrieveOccupancyForDate(selectedDateString) {
 	try {
 		//const response = await fetch('/api/state');
-		const response = await fetch('/retrieve-occupancy-for-date?' + new URLSearchParams({ dateString: selectedDateString }).toString());
+		const response = await fetch('https://my-server-4-q0rc.onrender.com/retrieve-occupancy-for-date?' + new URLSearchParams({ dateString: selectedDateString }).toString());
 
 		if (!response.ok) throw new Error('Network issue');
 
@@ -437,7 +437,7 @@ function handleFileSelection(event) {
 
 }
 async function uploadCsvString(csvString, uploadMessageElement) {
-	const url = `http://localhost:3000/upload-csv`;
+	const url = `https://my-server-4-q0rc.onrender.com/upload-csv`;
 	//console.log(occupancyData)
 
 	try {
