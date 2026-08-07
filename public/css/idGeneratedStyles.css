@@ -20,7 +20,7 @@ figure {
 	text-rendering: optimizeSpeed;
 }
 
-.parent {
+#parent {
 	position:absolute;
 	overflow:hidden;
 	left:0px;
