@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Michael's project</title>
+	<link href="css/idGeneratedStyles.css" rel="stylesheet" type="text/css" />
+	<script src="js/idGeneratedScript.js" type="text/javascript" defer></script>
+</head>
+
+<body id="publication" onload="RenderHtmlAndStartPolling();">
+	<div id="parent">
+		<div id="_marian-hall-1st-floor-text">
+			<p class="font_5">MARIAN HALL ~ 1st floor</p>
+			<p class="font_6">11 rooms / 23 beds</p>
+
+		</div>
+		<div id="_marian-hall-2nd-floor-text">
+			<p class="font_5">MARIAN HALL ~ 2nd floor</p>
+			<p class="font_6">11 rooms / 23 beds</p>
+
+		</div>
+		<div id="_francis-place-text">
+			<p class="font_5">FRANCIS PLACE ~ 2nd floor</p>
+			<p class="font_6">12 rooms / 2 beds</p>
+
+		</div>
+
+		<div id="_the-franciscan-retreat-text">
+			<p class="font_1">The Franciscan</p>
+			<p class="font_1">Retreat Center</p>
+			<p class="font_6">34 rooms / 70 beds</p>
+
+		</div>
+	</div>
+	<div class="legend-container">
+		<div class="legend-title">
+			<div class="legend-text">
+				<p class="font-legend">LEGEND</p>
+			</div>	
+		</div>
+		<div class="legend_spacer"></div>
+		<div class="legend-item">
+			<div class="room_in_legend_bounding_box">
+				<div class="_idGenCurrentState room_in_legend state-ready"></div>
+			</div>
+			<div class="legend-text">
+				<p class="font-legend">Ready</p>
+			</div>
+		</div>
+		<div class="legend_spacer"></div>
+		<div class="legend-item">
+			<div class="room_in_legend_bounding_box">
+				<div class="_idGenCurrentState room_in_legend state-assigned"></div>
+			</div>
+			<div class="legend-text">
+				<p class="font-legend">Assigned</p>
+			</div>
+		</div>
+		<div class="legend_spacer"></div>
+		<div class="legend-item">
+			<div class="room_in_legend_bounding_box">
+				<div class="_idGenCurrentState room_in_legend state-checked-out"></div>
+			</div>
+			<div class="legend-text">
+				<p class="font-legend">Checked Out</p>
+			</div>
+		</div>
+		<div class="legend_spacer"></div>
+		<div class="legend-item">
+			<div class="room_in_legend_bounding_box">
+				<div class="_idGenCurrentState room_in_legend state-cleaning-today"></div>
+			</div>
+			<div class="legend-text">
+				<p class="font-legend">Cleaning Today</p>
+			</div>
+		</div>
+		<div class="legend_spacer"></div>
+		<div class="legend-item">
+			<div class="room_in_legend_bounding_box">
+				<div class="_idGenCurrentState room_in_legend state-cleaning"></div>
+			</div>
+			<div class="legend-text">
+				<p class="font-legend">Cleaning</p>
+			</div>
+		</div>
+		<div class="legend_spacer"></div>
+		<div class="legend-item">
+			<div class="room_in_legend_bounding_box">
+				<div class="_idGenCurrentState room_in_legend state-other"></div>
+			</div>
+			<div class="legend-text">
+				<p class="font-legend">Other</p>
+			</div>
+		</div>
+	</div>
+	<div id="upload-csv">
+		<span>Upload csv</span>
+		<!--<button id="upload-button">Upload</button>-->
+		<input type="file" id="file-input" name="filename">
+		<div id="upload-message"></div>
+		<div id="file-message"></div>
+		<div id="file-content"></div>
+	</div>
+	<div id="connectivity-message">
+		<div id="text-connectivity-message"></div>
+	</div>
+	<div class="parent-date-picker-container">
+		<div class="date-picker-container">
+			<!-- Left Arrow Button -->
+			<button class="arrow-btn" id="prev-day">◀</button>
+			<!-- Date Display Element -->
+			<span id="date-display"></span>
+			<!-- Right Arrow Button -->
+			<button class="arrow-btn" id="next-day">▶</button>
+		</div>
+	</div>
+</body>
+
+</html>

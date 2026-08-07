@@ -1,0 +1,343 @@
+body,
+div,
+dl,
+dt,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+pre,
+code,
+blockquote,
+figure {
+	margin: 0;
+	padding: 0;
+	border-width: 0;
+	text-rendering: optimizeSpeed;
+}
+
+.parent {
+	position:absolute;
+	overflow:hidden;
+	left:0px;
+	top:0px;
+	width:612px;
+	height:792px;
+	background-color:white;
+}
+
+.wheelchair {
+	top: 52px;
+	left: 4px;
+	height: 17px;
+	position: absolute;
+	width: 15px;
+}
+
+img.fit_to_div{
+	height: 100.00%;
+	min-width: 100%;
+	width: 100.00%;
+	left: 0px;
+	position: absolute;
+	top: 0px;
+}
+.sharebath_bottom_layer {
+	background-color: rgb(0, 68, 254);
+	position: absolute;
+	width: 75px;
+	height: 21px;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.sharebath_top_layer {
+	position: absolute;
+	width: 75px;
+	height: 23px;
+}
+
+.room {
+	height: 73.00px;
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	width: 61.00px;
+}
+.room_button {
+	border-color: #000000;
+	border-width: 1px;
+	border-style: solid;
+	height: 73.00px;
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	width: 61.00px;
+	box-sizing: border-box;
+}
+
+.room_text {
+	left: 13px;
+	position: absolute;
+	top: 12px;
+	height: 43px;
+	width: 35px;
+	text-align: center;
+}
+
+.room_state{
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	height: 100%
+}
+.state-ready{
+	background-color: rgb(255, 255, 255);
+}
+.state-assigned{
+	border-style: solid;
+	border-color: rgb(26, 188, 156);
+	border-width: 5px;
+	box-sizing: border-box;
+}
+.state-checked-out{
+	background-color:rgb(0, 158, 79);
+	-webkit-print-color-adjust:exact;
+	print-color-adjust: exact;
+}
+.state-cleaning-today{
+	background-color: rgb(233, 213, 127);
+	-webkit-print-color-adjust:exact;
+	print-color-adjust: exact;
+}
+.state-cleaning{
+	/* canary yellow */
+	background-color: rgb(255, 255, 143); 
+	-webkit-print-color-adjust:exact;
+	print-color-adjust: exact;
+}
+.state-other{
+	background-color:rgb(198, 33, 40);
+	-webkit-print-color-adjust:exact;
+	print-color-adjust: exact;
+}
+
+div._idGenButton {
+	cursor: pointer;
+}
+
+div._idGenStateHide {
+	visibility: hidden;
+}
+
+p.font_1 {
+	padding: 2px;
+	color: #000000;
+	/* font-family: Arial, sans-serif; */
+	font-size: 18px;
+	font-style: normal;
+	font-weight: bold;
+}
+
+p.font_2 {
+	color: #000000;
+	/* font-family: Arial, sans-serif; */
+	font-size: 14px;
+	font-style: normal;
+	font-weight: normal;
+}
+
+p.font_3 {
+	color: #ffffff;
+	/* font-family: "Myriad Pro", sans-serif; */
+	font-size: 10px;
+	font-style: normal;
+	font-weight: bold;
+}
+p.font_4 {
+	color: #000000;
+	/* font-family: "Myriad Pro", sans-serif; */
+	font-size: 8px;
+	font-style: normal;
+	font-weight: bold;
+}
+
+.font_5 {
+	padding: 2px;
+	color: #000000;
+	/* font-family: Arial, sans-serif; */
+	/* font-size: 200px; */
+	font-style: normal;
+	font-weight: bold;
+	font-size: 10px;
+}
+
+p.font_6 {
+	padding: 2px;
+	color: #000000;
+	/* font-family: Arial, sans-serif; */
+	/* font-size: 200px; */
+	font-style: normal;
+	font-weight: normal;
+	font-size: 10px;
+}
+
+
+#_marian-hall-1st-floor-text {
+	height: 42px;
+	left: 234px;
+	position: absolute;
+	top: 464px;
+	width: 176px;
+	text-align: center;
+}
+
+#_marian-hall-2nd-floor-text{
+	height: 42px;
+	left: 234px;
+	position: absolute;
+	top: 709px;
+	width: 176px;
+	text-align: center;
+}
+
+#_francis-place-text {
+	height: 42px;
+	left: 254px;
+	position: absolute;
+	top: 170px;	
+	width: 176px;
+	text-align: center;
+}
+
+#_the-franciscan-retreat-text {
+	/* height: 48.72px; */
+	left: 77px;
+	position: absolute;
+	top: 52px;
+	width: 150.00px;
+	text-align: center;
+}
+
+.room_in_legend {	
+	height: 44.00px;
+	width: 37.00px;
+}
+
+.room_in_legend_bounding_box {
+	border-color: #000000;
+	border-width: 1px;
+	border-style: solid;
+	height: 44.00px;
+	position: relative;
+	
+	/* width: 37.00px; */
+	/* box-sizing: border-box; */
+}
+.legend_spacer {
+	height: 12px;
+}
+
+.legend-container {
+	left: 20px;
+	position: absolute;
+	top: 200px;
+}
+
+.legend-item {
+	display: flex;       /* Aligns children side by side */
+  	gap: 10px;  
+}
+
+.legend-text {
+	display: flex;
+  	align-items: center; /* Aligns text vertically */
+  	justify-content: center; /* Optional: Aligns text horizontally */
+  	height: 44px; /* Requires a defined height to see vertical centering */
+}
+
+p.font-legend {	
+	color: #000000;
+	/* font-family: Arial, sans-serif; */
+	font-size: 10px;
+	font-style: normal;
+	font-weight: bold;
+}
+
+.connectivity-message {
+	display: none;
+	width: 612px;
+	height: 792px;
+	position: absolute;
+	/* display: flex; */
+	justify-content: center;
+	/* Centers horizontally */
+	align-items: center;
+	/* Centers vertically */
+	/* background-color: rgba(255, 255, 255, 0.5); */
+	/* 50% transparent white*/
+}
+
+#upload-csv {
+	left: 20px;
+	position: absolute;
+	top: 750px;
+}
+
+#text-connectivity-message {
+	width: 50%;
+	/* Or any fixed width */
+	text-align: center;
+	/* Centers the words */
+	margin: 0 auto;
+	/* Centers the actual paragraph block */
+
+	color: #000000;
+	/* font-family: Arial, sans-serif; */
+	font-size: 72px;
+	font-style: normal;
+	font-weight: bold;
+}
+
+.parent-date-picker-container {
+	position: absolute;
+	left: 20px;
+	top: 700px;
+	display: grid;
+	padding: 5px 5px;
+	justify-content: center;
+}
+
+.date-picker-container {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	/* font-family: Arial, sans-serif; */
+}
+
+.arrow-btn {
+	background-color: #007bff;
+	color: white;
+	border: none;
+	padding: 5px 5px;
+	font-size: 12px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.arrow-btn:hover {
+	background-color: #0056b3;
+}
+
+#date-display {
+	font-size: 12px;
+	font-weight: bold;
+	min-width: 50px;
+	text-align: center;
+}
