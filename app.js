@@ -67,6 +67,7 @@ function processCsv(csvString) {
   let otherRows = [];
   let dataRows = [];
   let headerRows = [];
+  let dateRows = [];
   rows.forEach((row, index) => {
     // replace repeating commas with one comma and replace single comma at the start and end of row (this removes empty cells on that row)
     // also replace empty spaces with underscores ('Room 1' becomes 'Room_1')
@@ -76,7 +77,9 @@ function processCsv(csvString) {
       dataRows.push(cleanRow)
     } else if (cleanRow.includes("1,2,3")) {
       headerRows.push(cleanRow)
-    } else if (cleanRow) {
+    } else if (cleanRow.includes("Date")) {
+      dateRows.push(cleanRow)
+    } else if (cleanRow){
       otherRows.push(cleanRow)
     }
   });
@@ -102,18 +105,18 @@ function processCsv(csvString) {
     });
   });
 
-  let csvMonth = otherRows[4];
-  let csvDateGenerated = otherRows[1];
+  let csvMonth = parts[0];
+  let csvDate = dateRows[0];
 
   let message = "";
   if (Object.hasOwn(db.csvData, csvMonth)) {
-    message = `Replaced existing csv for month ${csvMonth} with csv generated ${csvDateGenerated}`;
+    message = `Replaced existing csv for month "${csvMonth}" with date ${csvDate}`;
 
   } else {
-    message = `Uploaded csv for month ${csvMonth} generated ${csvDateGenerated}`;
+    message = `Uploaded csv for month ${csvMonth} with date ${csvDate}`;
   }
   //db.csvFiles[csvMonth] = { 'csvDateGenerated': csvDateGenerated, 'dateStringArray': headersSliced, csvString: csvString };
-  db.csvData[csvMonth] = { 'csvDateGenerated': csvDateGenerated, 'dateStringArray': headersSliced, csvString: csvString };
+  db.csvData[csvMonth] = { 'csvDateGenerated': csvDate, 'dateStringArray': headersSliced, csvString: csvString };
 
   //fillRoomOccupancystateByIdByDateStringForLastTwoMonths();
   fillRoomOccupancyWithCsvData(csvMonth);
