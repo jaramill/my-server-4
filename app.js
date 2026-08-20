@@ -51,31 +51,36 @@ function removeDuplicateLines(csvString) {
 
 function processCsv(csvString) {
   // 0. Remove duplicate lines
-  const csvStringWithoutDuplicateLines = removeDuplicateLines(csvString)
+  //const csvStringWithoutDuplicateLines = removeDuplicateLines(csvString)
   // 1. Extract and save the text inside the double quotes (the legend)
   const regex = /"([^"]*)"/g;
-  const savedLegend = [...csvStringWithoutDuplicateLines.matchAll(regex)].map(match => match[1]);
+  //const savedLegend = [...csvStringWithoutDuplicateLines.matchAll(regex)].map(match => match[1]);
+  const savedLegend = [...csvString.matchAll(regex)].map(match => match[1]);
 
   // 2. Remove the double quotes and the text inside them from the string
-  const cleanedString = csvStringWithoutDuplicateLines.replace(regex, '');
+  //const cleanedString = csvStringWithoutDuplicateLines.replace(regex, '');
+  const cleanedString = csvString.replace(regex, '');
 
   //const rows = csvString.trim().split("\n");
   const rows = cleanedString.trim().split("\n");
 
   let otherRows = [];
   let dataRows = [];
+  let headerRows = [];
   rows.forEach((row, index) => {
     // replace repeating commas with one comma and replace single comma at the start and end of row (this removes empty cells on that row)
     // also replace empty spaces with underscores ('Room 1' becomes 'Room_1')
     const cleanRow = row.replace(/,+/g, ',').trim().replace(/(^,)|(,$)/g, "").replace(" ", "_");
     //if (cleanRow.includes("Room_")||cleanRow.includes("Jan-")||cleanRow.includes("Feb-")||cleanRow.includes("Mar-")||cleanRow.includes("Apr-")||cleanRow.includes("May-")||cleanRow.includes("Jun-")||cleanRow.includes("Jul-")||cleanRow.includes("Aug-")||cleanRow.includes("Sep-")||cleanRow.includes("Oct-")||cleanRow.includes("Nov-")||cleanRow.includes("Dec-")){
-    if (cleanRow.includes("Room_") || cleanRow.includes("1,2,3")) {
+    if (cleanRow.includes("Room_")){
       dataRows.push(cleanRow)
+    } else if (cleanRow.includes("1,2,3")) {
+      headerRows.push(cleanRow)
     } else if (cleanRow) {
       otherRows.push(cleanRow)
     }
   });
-  const headers = dataRows[0].split(',').map(header => header.trim());
+  const headers = headerRows[0].split(',').map(header => header.trim());
 
   // Get eg Jun and 26 from Jun-26
   const parts = headers[0].split('-').map(part => part.trim());
