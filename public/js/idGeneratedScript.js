@@ -408,7 +408,7 @@ function handleFileSelection(event) {
 
 	reader.onload = () => {
 		const csvString = reader.result;
-		//document.getElementById("file-content").innerHTML = csvToHtmlTable(csvString);
+		document.getElementById("file-content").innerHTML = csvToHtmlTable(csvString);
 		if (csvString) {
 			const uploadMessageElement = document.getElementById("upload-message");
 			//document.getElementById("file-content").textContent = "";
@@ -436,6 +436,41 @@ function handleFileSelection(event) {
 	reader.readAsText(file);
 
 }
+function csvToHtmlTable(csvString) {
+      //const csvStringWithoutDuplicateLines = removeDuplicateLines(csvString)
+
+      // 1. Extract and save the text inside the double quotes (the legend)
+      const regex = /"([^"]*)"/g;
+      const savedText = [...csvString.matchAll(regex)].map(match => match[1]);
+
+      // 2. Remove the double quotes and the text inside them from the string
+      const cleanedString = csvString.replace(regex, '');
+
+      //const rows = csvString.trim().split("\n");
+      const rows = cleanedString.trim().split("\n");
+      let html = "<table border='1'>\n";
+
+      rows.forEach((row, index) => {
+        // replace repeating commas with one comma and replace single comma at the start and end of row (this removes empty cells on that row)
+        //const cleanRow = row.replace(/,+/g, ',').trim().replace(/(^,)|(,$)/g, "");
+        const columns = row.split(",");
+
+        html += "  <tr>\n";
+
+        columns.forEach(cell => {
+          // Use <th> for the first header row, <td> for everything else
+          //const tag = (index === 0) ? "th" : "td";
+          //html += `    <${tag}>${cell.trim()}</${tag}>\n`;
+          html += `    <td>${cell.trim()}</td>\n`;
+        });
+
+        html += "  </tr>\n";
+      });
+      html += "</table>";
+      // append first text extracted within the double quotes (the legend)
+      html += `<table border='1'><tr><td><pre>${savedText[0]}</pre></td></tr></table>`;
+      return html;
+    }
 async function uploadCsvString(csvString, uploadMessageElement) {
 	const url = `https://my-server-4-q0rc.onrender.com/upload-csv`;
 	//console.log(occupancyData)
