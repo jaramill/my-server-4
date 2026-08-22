@@ -48,11 +48,24 @@ function removeDuplicateLines(csvString) {
   // Join the unique lines back into a single CSV string
   return uniqueLines.join('\n');
 }
-
+function convertMonthToNumber(monthName) {
+  // Append a temporary day and year so JavaScript can parse it
+  const date = new Date(`${monthName} 1, 2000`);
+  const monthIndex = date.getMonth();
+  
+  // getMonth() returns 7 for August, so add 1 to get 8
+  // Return null if the input string is invalid (NaN)
+  return isNaN(monthIndex) ? null : monthIndex + 1;
+}
+function convertYearTo4digits(year){
+  const yearInt = parseInt(year);
+  return yearInt<100?yearInt+2000:yearInt
+}
 function processCsv(csvString) {
   // 0. Remove duplicate lines
   //const csvStringWithoutDuplicateLines = removeDuplicateLines(csvString)
   // 1. Extract and save the text inside the double quotes (the legend)
+
   const regex = /"([^"]*)"/g;
   //const savedLegend = [...csvStringWithoutDuplicateLines.matchAll(regex)].map(match => match[1]);
   const savedLegend = [...csvString.matchAll(regex)].map(match => match[1]);
@@ -63,7 +76,7 @@ function processCsv(csvString) {
 
   //const rows = csvString.trim().split("\n");
   const rows = cleanedString.trim().split("\n");
-
+  let message = "";
   let otherRows = [];
   let dataRows = [];
   let headerRows = [];
@@ -86,15 +99,34 @@ function processCsv(csvString) {
   const headers = headerRows[0].split(',').map(header => header.trim());
 
   // Get eg Jun and 26 from Jun-26
-  const parts = headers[0].split('-').map(part => part.trim());
 
+  const monthYearString = headers[0].replace(/[_,/]/g, '-');
+  const parts = monthYearString.split('-').map(part => part.trim());
+  const firstPart = convertMonthToNumber(parts[0]);
+  const secondPart = convertMonthToNumber(parts[1]);
+  let month = "";
+  let year = "";
+  if (firstPart!==null && secondPart===null){
+    month = firstPart;
+    year = convertYearTo4digits(parts[1]);
+  } else if (firstPart===null && secondPart!==null){
+    month = secondPart;
+    year = convertYearTo4digits(parts[1]);
+  } else if (firstPart!==null && !secondPart!==null){
+    message = `ambiguous date format in first cell of date row: ${monthYearString}`;
+    return message;
+  } else {
+    message = `unrecognized date format in first cell of date row: ${monthYearString}`;
+    return message;
+  }
   const headersSliced = headers.slice(1);
   for (let i = 0; i < headersSliced.length; i++) {
     // Create date string, eg Jun 1, 2026
-    const mmm_dd_yyyy = `${parts[0]} ${parseInt(headersSliced[i], 10)}, 20${parts[1]}`;
+    //const mmm_dd_yyyy = `${parts[0]} ${parseInt(headersSliced[i], 10)}, 20${parts[1]}`;
     //headersSliced[i]= (new Date(mmm_dd_yyyy).toISOString()).split('T')[0] ; 
     //headersSliced[i]= new Date(mmm_dd_yyyy).toISOString();
-    headersSliced[i] = dateToDateString(new Date(mmm_dd_yyyy));
+    //headersSliced[i] = dateToDateString(new Date(mmm_dd_yyyy));
+    headersSliced[i] = dateToDateString(new Date(year, month-1, parseInt(headersSliced[i])));
   }
   dataRows.slice(1).forEach(row => {
     const values = row.split(',').map(value => value.trim());
@@ -105,10 +137,9 @@ function processCsv(csvString) {
     });
   });
 
-  let csvMonth = parts[0];
+  let csvMonth = `${month}-${year}`;
   let csvDate = dateRows[0];
 
-  let message = "";
   if (Object.hasOwn(db.csvData, csvMonth)) {
     message = `Replaced existing csv for month "${csvMonth}" with date ${csvDate}`;
 
